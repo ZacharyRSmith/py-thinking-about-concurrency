@@ -11,7 +11,7 @@ FUZZ = True
 
 def fuzz():
     if FUZZ:
-        time.sleep(random.random())
+        time.sleep(random.random() / 5)
 
 ###########################################################################################
 
@@ -32,6 +32,13 @@ class EachLimitTest(unittest.TestCase):
         self.assertEqual(err, None)
         args.sort()
         self.assertEqual(args, [0, 1, 2, 3, 4, 5, 6, 7, 8, 9])  # ENHANCE: auto-ensure parallelized
+    
+    def test_zero_limit(self):
+        args = []
+
+        mock = Mock()
+        each_limit([1, 3, 2], 0, mock)
+        self.assertEqual(mock.call_args_list, [])
 
 
 if __name__ == '__main__':
