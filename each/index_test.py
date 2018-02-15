@@ -11,7 +11,7 @@ FUZZ = True
 
 def fuzz():
     if FUZZ:
-        time.sleep(random.random())
+        time.sleep(random.random() / 5)
 
 ###########################################################################################
 
