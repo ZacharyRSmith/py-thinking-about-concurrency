@@ -21,9 +21,9 @@ class ConcatTest(unittest.TestCase):
         self.assertEqual(err, None)
         self.assertEqual(call_order, [1, 2, 3])
         self.assertEqual(res, [
-            1, 2,
-            3, 4,
-            2, 3
+            [1, 2],
+            [3, 4],
+            [2, 3],
         ])
 
 

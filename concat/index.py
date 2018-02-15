@@ -9,7 +9,7 @@ def concat(coll, iter):
     try:
         for res in pool.imap(iter, coll):
             print(res)
-            results += res
+            results.append(res)
     except Exception as e:
         return [results, e]
     return [results, None]
