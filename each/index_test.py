@@ -1,3 +1,4 @@
+from unittest.mock import Mock
 import unittest
 import time
 import random
@@ -28,6 +29,11 @@ class EachTest(unittest.TestCase):
         self.assertEqual(err, None)
         args.sort()
         self.assertEqual(args, [1,2,3]) # ENHANCE: auto-ensure parallelized
+    
+    def test_empty_list(self):
+        mock = Mock()
+        each([], mock)
+        self.assertEqual(mock.call_args_list, [])
 
 if __name__ == '__main__':
     unittest.main()
