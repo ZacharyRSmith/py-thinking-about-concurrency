@@ -1,4 +1,5 @@
 import urllib.request
+from multiprocessing.pool import ThreadPool as Pool
 
 sites = [
     'https://www.yahoo.com/',
@@ -23,5 +24,6 @@ def pagesize(url):
         page = u.read()
         return url, len(page)
 
-for result in map(pagesize, sites):
+pool = Pool(10)
+for result in pool.imap_unordered(pagesize, sites):
     print(result)
