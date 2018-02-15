@@ -17,7 +17,11 @@ sites = [
     'http://www.cnbc.com/',
 ]
 
-for url in sites:
+def pagesize(url):
+    '''Determine the size of a webpage'''
     with urllib.request.urlopen(url) as u:
         page = u.read()
-        print(url, len(page))
+        return url, len(page)
+
+for result in map(pagesize, sites):
+    print(result)
