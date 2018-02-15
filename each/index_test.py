@@ -34,6 +34,14 @@ class EachTest(unittest.TestCase):
         mock = Mock()
         each([], mock)
         self.assertEqual(mock.call_args_list, [])
+    
+    def test_error(self):
+        def raise_exception(item):
+            raise Exception('BOOM!')
+        res, err = each([1,3,2], raise_exception)
+        self.assertEqual(err.__class__, Exception)
+        self.assertEqual(err.args[0], 'BOOM!')
+        self.assertEqual(res, None)
 
 if __name__ == '__main__':
     unittest.main()
